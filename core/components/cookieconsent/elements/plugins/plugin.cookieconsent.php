@@ -1,7 +1,17 @@
 <?php
+/** @var array $scriptProperties */
+/** @var modX $modx */
+/** @var modDocument $resource */
 switch ($modx->event->name)
 {
   case 'OnWebPagePrerender':
+    $resource = $modx->resource;
+    $html = 1;
+
+    if (strtolower($resource->get('content_type')) != $html) {
+      return '';
+    }
+
 
     $c = $modx->getOption('cookieName', $scriptProperties, 'CookieConsent');
 
